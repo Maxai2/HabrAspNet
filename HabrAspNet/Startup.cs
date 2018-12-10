@@ -45,6 +45,8 @@ namespace HabrAspNet
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+
             app.UseMvc(routeBuider =>
             {
                 routeBuider.MapRoute(

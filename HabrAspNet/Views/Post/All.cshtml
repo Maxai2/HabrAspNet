@@ -1,0 +1,16 @@
+﻿@model List<Post>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="PostsClass">
+    @foreach (var p in Model)
+    {
+        <h2>p.PostName</h2>
+        <br />
+        <label>p.PostDate</label>
+        <br />
+        <label>p.PostPreview</label>
+    }
+</div>

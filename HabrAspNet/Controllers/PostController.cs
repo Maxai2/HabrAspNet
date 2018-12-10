@@ -1,4 +1,5 @@
 ﻿using HabrAspNet.Services;
+using HabrAspNet.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,12 @@ namespace HabrAspNet.Controllers
         {
             var posts = postService.GetPosts();
 
-            return View();
+            //PostViewModel postViewModel = new PostViewModel()
+            //{
+            //    Posts = posts;
+            //}
+
+            return View(posts);
         }
     }
 }

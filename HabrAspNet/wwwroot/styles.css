@@ -1,6 +1,13 @@
 ﻿body 
 {
     margin: 0;
+    overflow: hidden;
+}
+
+header 
+{
+    position: sticky;
+    top: 0;
 }
 
 .headerCl 
@@ -82,6 +89,7 @@
     margin: 0 auto;
     background-color: #F4F4F4;
     height: 100vh;
+    overflow: auto;
 }
 
 .loginFormCl 
@@ -93,6 +101,7 @@
 .loginFormCl h2 
 {
     margin: 20px auto;
+    cursor: default;
 }
 
 .loginFormCl label 
@@ -106,10 +115,21 @@
     width: 100%;
 }
 
-.loginFormCl input:last-of-type 
+.loginFormCl .loginButton 
 {
     background-color: #558cb7;
     color: #fff;
     padding: 0;
     height: 40px;
+    cursor: pointer;
+}
+
+.loginFormCl .loginButton:hover 
+{
+    background-color: #5569b7;
+}
+
+.loginFormCl span 
+{
+    color: red;
 }

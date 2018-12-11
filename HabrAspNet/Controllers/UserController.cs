@@ -17,6 +17,17 @@ namespace HabrAspNet.Controllers
             this.userService = userService;
         }
 
+        [HttpPost]
+        public IActionResult CheckEmail(string email)
+        {
+            if (userService.CheckEmail(email))
+            {
+                return Json(false);
+            }
+
+            return Json(true);
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
@@ -26,10 +37,33 @@ namespace HabrAspNet.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            LoginViewModel loginViewModel = new LoginViewModel();
+            return View(loginViewModel);
         }
 
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
+            var user = userService.GetUsers().Find(u => u.Email == model.Email && u.Password == model.Password);
+
+            if (user != null)
+            {
+                ViewData["isAuth"] = true;
+                ViewData["UserAvatar"] = user.Avatar;
+
+                //cookie
+                Response.Cookies.Append("id", user.Id.ToString());
+
+                return RedirectToAction("All", "Post");
+            }
+
+            return View(model);
+        }
 
         [HttpGet]
         public IActionResult Register()

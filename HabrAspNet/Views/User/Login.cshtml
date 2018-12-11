@@ -7,20 +7,20 @@
 <div class="loginFormCl">
     <h2>LOGIN</h2>
 
-    <form asp-controller="User" asp-action="login" method="get">
+    <form asp-controller="User" asp-action="login" method="post">
         <label asp-for="Email"></label>
         <br />
-        <input asp-for="Email" />
+        <input asp-for="Email" spellcheck="false"/>
         <span asp-validation-for="Email"></span>
         <br />
         <br />
         <label asp-for="Password"></label>
         <br />
-        <input asp-for="Password" />
+        <input asp-for="Password" spellcheck="false"/>
         <span asp-validation-for="Password"></span>
         <br />
         <br />
-        <input type="submit" value="Enter" />
+        <input type="submit" value="Enter" class="loginButton"/>
     </form>
 </div>
 

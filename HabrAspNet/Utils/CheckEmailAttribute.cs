@@ -13,7 +13,7 @@ namespace HabrAspNet.Utils
         {
             IUserService userService = (IUserService)validationContext.GetService(typeof(IUserService));
 
-            if (userService.CheckEmail(value.ToString()))
+            if (!userService.CheckEmail(value.ToString()))
             {
                 return new ValidationResult(FormatErrorMessage(validationContext.DisplayName));
             }

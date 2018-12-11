@@ -23,6 +23,11 @@ namespace HabrAspNet.Services
             return user;
         }
 
+        public bool CheckEmail(string email)
+        {
+            return context.Users.Where(u => u.Email == email).Count() > 0;
+        }
+
         public User GetUser(int id)
         {
             return context.Users.Find(id);

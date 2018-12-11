@@ -11,5 +11,6 @@ namespace HabrAspNet.Services
         User GetUser(int id);
         User AddUser(User user);
         List<User> GetUsers();
+        bool CheckEmail(string email);
     }
 }

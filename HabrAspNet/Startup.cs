@@ -93,6 +93,11 @@ namespace HabrAspNet
                         controller = "User",
                         action = "CurrentUser"
                     });
+
+                routeBuider.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action}"
+                    );
             });
 
             app.Run(async (context) =>

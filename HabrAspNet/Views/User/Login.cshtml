@@ -1,0 +1,31 @@
+﻿@model LoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="loginFormCl">
+    <h2>LOGIN</h2>
+
+    <form asp-controller="User" asp-action="login" method="get">
+        <label asp-for="Email"></label>
+        <br />
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+        <br />
+        <br />
+        <label asp-for="Password"></label>
+        <br />
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+        <br />
+        <br />
+        <input type="submit" value="Enter" />
+    </form>
+</div>
+
+@section scripts
+    {
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+}

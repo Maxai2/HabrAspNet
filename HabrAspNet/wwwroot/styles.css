@@ -6,11 +6,110 @@
 .headerCl 
 {
     height: 100px;
-    margin: 0 50px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 0.5fr 0.5fr;
 }
 
 .headerCl img 
 {
     height: 100px;
-    left: 50%;
+    grid-column: 2;
+    margin: 0 auto;
+}
+
+.AuthWork 
+{
+    grid-column: 4;
+}
+
+.navbarClass 
+{
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    margin: 0 auto;
+    width: max-content;
+}
+
+.navbarClass .LoginCl 
+{
+    color: #838a92;
+    text-decoration: none;
+    border: 1px solid #a4afba;
+    background-color: transparent;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.navbarClass .LoginCl:hover 
+{
+    background-color: #65a3be;
+    color: #fff;
+}
+
+.navbarClass .RegisCl 
+{
+    border: 1px solid transparent;
+    background-color: #65a3be;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.navbarClass .RegisCl:hover 
+{
+    background-color: #fff;
+    color: #65a3be;
+    border: 1px solid #a4afba;
+}
+
+.loginFormCl 
+{
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.BodyCl 
+{
+    margin: 0 auto;
+    background-color: #F4F4F4;
+    height: 100vh;
+}
+
+.loginFormCl 
+{
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+.loginFormCl h2 
+{
+    margin: 20px auto;
+}
+
+.loginFormCl label 
+{
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.loginFormCl input 
+{
+    width: 100%;
+}
+
+.loginFormCl input:last-of-type 
+{
+    background-color: #558cb7;
+    color: #fff;
+    padding: 0;
+    height: 40px;
 }

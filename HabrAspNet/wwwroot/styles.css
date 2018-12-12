@@ -29,6 +29,20 @@ header
     grid-column: 4;
 }
 
+.AuthWork .GetUserProfileCl 
+{
+
+}
+
+.AuthWork .GetUserProfileCl .AvatarImg 
+{
+    border-radius: 50%;
+    height: 50px;
+    position: absolute;
+    top: 25%;
+    left: 94%;
+}
+
 .navbarClass 
 {
     display: flex;
@@ -76,14 +90,6 @@ header
     border: 1px solid #a4afba;
 }
 
-.loginFormCl 
-{
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-}
-
 .BodyCl 
 {
     margin: 0 auto;
@@ -92,30 +98,35 @@ header
     overflow: auto;
 }
 
-.loginFormCl 
+.FormCl 
 {
-    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 30px auto;
     max-width: 300px;
 }
 
-.loginFormCl h2 
+.FormCl h2 
 {
     margin: 20px auto;
     cursor: default;
 }
 
-.loginFormCl label 
+.FormCl label 
 {
     font-weight: bold;
     font-size: 15px;
 }
 
-.loginFormCl input 
+.FormCl input 
 {
     width: 100%;
 }
 
-.loginFormCl .loginButton 
+.FormCl .Button 
 {
     background-color: #558cb7;
     color: #fff;
@@ -124,12 +135,18 @@ header
     cursor: pointer;
 }
 
-.loginFormCl .loginButton:hover 
+.FormCl .Button:hover 
 {
     background-color: #5569b7;
 }
 
-.loginFormCl span 
+.FormCl span 
 {
     color: red;
 }
+
+.ProfileCl 
+{
+    margin: 0 auto;
+}
+

@@ -1,4 +1,5 @@
-﻿using HabrAspNet.Services;
+﻿using HabrAspNet.Models;
+using HabrAspNet.Services;
 using HabrAspNet.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,9 +30,22 @@ namespace HabrAspNet.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GoToProfile()
         {
-            return View();
+            var user = new UserViewModel();
+
+            if (Request.Cookies.Count != 0)
+            {
+                user.User = userService.GetUsers().Find(u => u.Id == Int32.Parse(Request.Cookies["id"]));
+
+                user.UserPosts = user.User.Posts;
+
+                ViewData["isAuth"] = true;
+
+                ViewData["UserAvatar"] = user.User.Avatar;
+            }
+
+            return View(user);
         }
 
         [HttpGet]
@@ -53,8 +67,6 @@ namespace HabrAspNet.Controllers
 
             if (user != null)
             {
-                ViewData["isAuth"] = true;
-                ViewData["UserAvatar"] = user.Avatar;
 
                 //cookie
                 Response.Cookies.Append("id", user.Id.ToString());
@@ -69,6 +81,32 @@ namespace HabrAspNet.Controllers
         public IActionResult Register()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = new User()
+            {
+                Avatar = "/user-default.png",
+                Email = model.Email,
+                Login = model.Login,
+                Password = model.Password,
+                RegistrationDate = DateTime.UtcNow
+            };
+
+            var userId = userService.AddUser(user).Id;
+
+
+            //cookie
+            Response.Cookies.Append("id", userId.ToString());
+
+            return RedirectToAction("All", "Post");
         }
     }
 }

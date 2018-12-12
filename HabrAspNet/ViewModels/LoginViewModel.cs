@@ -20,3 +20,4 @@ namespace HabrAspNet.ViewModels
         public string Password { get; set; }
     }
 }
+    

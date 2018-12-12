@@ -23,16 +23,16 @@
             <div class="AuthWork">
                 @if (ViewData["isAuth"] != null && (bool)ViewData["isAuth"])
                 {
-                    <form asp-controller="User" asp-action="Get" method="get">
-                        <img src="@ViewData["UserAvatar"]" />
-                    </form>
+                    <a asp-controller="user" asp-action="goToProfile" class="GetUserProfileCl">
+                        <img src="@ViewData["UserAvatar"]" class="AvatarImg" />
+                    </a>
                 }
                 else
                 {
                     <div class="navbarClass">
-                        <a asp-controller="User" asp-action="Login" class="LoginCl">Login</a>
+                        <a asp-controller="user" asp-action="login" class="LoginCl">Login</a>
 
-                        <a asp-controller="User" asp-action="register" class="RegisCl">Registration</a>
+                        <a asp-controller="user" asp-action="register" class="RegisCl">Registration</a>
                     </div>
                 }
             </div>

@@ -11,20 +11,29 @@ namespace HabrAspNet.Controllers
     public class PostController : Controller
     {
         private IPostService postService;
+        private IUserService userService;
 
-        public PostController(IPostService postService)
+        public PostController(IPostService postService, IUserService userService)
         {
             this.postService = postService;
+            this.userService = userService;
         }
 
         public IActionResult All()
         {
             var posts = postService.GetPosts();
 
-            //PostViewModel postViewModel = new PostViewModel()
-            //{
-            //    Posts = posts;
-            //}
+            if (Request.Cookies.Count != 0)
+            {
+                var user = userService.GetUsers().Find(u => u.Id == Int32.Parse(Request.Cookies["id"]));
+
+                if (user != null)
+                {
+                    ViewData["isAuth"] = true;
+
+                    ViewData["UserAvatar"] = user.Avatar;
+                }
+            }
 
             return View(posts);
         }

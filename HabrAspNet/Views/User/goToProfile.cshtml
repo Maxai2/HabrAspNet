@@ -4,16 +4,32 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="ProfileCl">
-    <img src="@Model.User.Avatar"/>
-    <br />
-    <label>@Model.User.Login</label>
-    <br />
-    <label></label>
+<div>
+    <div class="ProfileInfoConteinerCl">
+        <div class="ProfileInfoCl">
+            <img src="@Model.User.Avatar" />
+            <br />
+            <br />
+            <label>@Model.User.Login</label>
+            <br />
+            <label>@Model.User.Email</label>
+            <br />
+            <label>@Model.User.RegistrationDate</label>
+        </div>
+
+        <form asp-controller="post" asp-action="add" class="PostCreatContCl">
+            <input type="text" name="PostName" placeholder="Post name" required />
+            <br />
+            <textarea name="PostText" placeholder="Text" required />
+            <br />
+            <input type="submit" value="Add post" />
+        </form>
+    </div>
+
     <hr />
 
-    <div>
-        @foreach (var p in Model.UserPosts)
+    <div class="PostsCl">
+        @foreach (var p in Model.User.Posts)
         {
             <h2>p.PostName</h2>
             <br />
@@ -25,3 +41,16 @@
         }
     </div>
 </div>
+
+<script>
+    function addPost() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("booksul").innerHTML += this.responseText;
+            }
+        };
+        xhttp.open("post", "/book/addrandom", true);
+        xhttp.send();
+    }
+</script>

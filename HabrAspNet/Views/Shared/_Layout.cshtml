@@ -18,7 +18,9 @@
 <body>
     <header>
         <div class="headerCl">
-            <img src="~/logo-habrahabr.png" />
+            <a asp-controller="post" asp-action="all" class="MainPageImgCl">
+                <img src="~/logo-habrahabr.png" />
+            </a>
 
             <div class="AuthWork">
                 @if (ViewData["isAuth"] != null && (bool)ViewData["isAuth"])
@@ -26,6 +28,18 @@
                     <a asp-controller="user" asp-action="goToProfile" class="GetUserProfileCl">
                         <img src="@ViewData["UserAvatar"]" class="AvatarImg" />
                     </a>
+
+                    <a asp-controller="user" asp-action="logout" class="LogoutCl">Logout</a>
+
+                    @*<img src="@ViewData["UserAvatar"]" class="AvatarImg" />
+                        <select>
+                            <option>
+                                <a asp-controller="user" asp-action="goToProfile">Profile</a>
+                            </option>
+                            <option>
+                                <a asp-controller="user" asp-action="logout">Logout</a>
+                            </option>
+                        </select>*@
                 }
                 else
                 {

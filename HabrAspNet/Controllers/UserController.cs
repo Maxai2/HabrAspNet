@@ -38,8 +38,6 @@ namespace HabrAspNet.Controllers
             {
                 user.User = userService.GetUsers().Find(u => u.Id == Int32.Parse(Request.Cookies["id"]));
 
-                user.UserPosts = user.User.Posts;
-
                 ViewData["isAuth"] = true;
 
                 ViewData["UserAvatar"] = user.User.Avatar;
@@ -97,7 +95,7 @@ namespace HabrAspNet.Controllers
                 Email = model.Email,
                 Login = model.Login,
                 Password = model.Password,
-                RegistrationDate = DateTime.UtcNow
+                RegistrationDate = DateTime.Now
             };
 
             var userId = userService.AddUser(user).Id;
@@ -105,6 +103,14 @@ namespace HabrAspNet.Controllers
 
             //cookie
             Response.Cookies.Append("id", userId.ToString());
+
+            return RedirectToAction("All", "Post");
+        }
+
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Append("id", "");
 
             return RedirectToAction("All", "Post");
         }

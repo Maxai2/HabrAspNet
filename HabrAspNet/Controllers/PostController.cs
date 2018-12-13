@@ -23,7 +23,7 @@ namespace HabrAspNet.Controllers
         {
             var posts = postService.GetPosts();
 
-            if (Request.Cookies.Count != 0)
+            if (Request.Cookies.Count != 0 && Request.Cookies["id"] != null && Request.Cookies["id"] != "")
             {
                 var user = userService.GetUsers().Find(u => u.Id == Int32.Parse(Request.Cookies["id"]));
 

@@ -1,5 +1,6 @@
 ﻿using HabrAspNet.Services;
 using HabrAspNet.ViewModels;
+using HabrAspNet.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace HabrAspNet.Controllers
             this.userService = userService;
         }
 
+        [HttpGet]
         public IActionResult All()
         {
             var posts = postService.GetPosts();
@@ -36,6 +38,23 @@ namespace HabrAspNet.Controllers
             }
 
             return View(posts);
+        }
+
+        [HttpPost]
+        public IActionResult AddPost(UserViewModel model)
+        {
+            int previewLength = model.PostText.Length / 2;
+            string preview = model.PostText.Substring(0, previewLength);
+
+            postService.AddPost(new Post()
+            {
+                PostDate = DateTime.Now,
+                PostName = model.PostName,
+                PostPreview = preview,
+                PostText = model.PostText
+            });
+
+            return PartialView("_PostsPartial", postService.GetPosts());
         }
     }
 }

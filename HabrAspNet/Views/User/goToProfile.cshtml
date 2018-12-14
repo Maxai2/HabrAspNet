@@ -18,39 +18,45 @@
         </div>
 
         <form asp-controller="post" asp-action="add" class="PostCreatContCl">
-            <input type="text" name="PostName" placeholder="Post name" required />
+            <input asp-for="@Model.PostName" placeholder="Post name"/>
             <br />
-            <textarea name="PostText" placeholder="Text" required />
+            <textarea asp-for="@Model.PostText" placeholder="Text"/>
             <br />
-            <input type="submit" value="Add post" />
+            <input type="submit" value="Add post"/>
         </form>
     </div>
 
     <hr />
 
-    <div class="PostsCl">
+    @*<div class="PostsCl" id="postsId">
         @foreach (var p in Model.User.Posts)
         {
             <h2>p.PostName</h2>
-            <br />
+            <br/>
             <label>p.PostDate</label>
-            <br />
+            <br/>
             <label>p.PostPreview</label>
-            <br />
-            <hr />
+            <br/>
+            <hr/>
         }
-    </div>
+    </div>*@
+
+    @Html.Partial("_PostsPartial")
+
 </div>
 
 <script>
-    function addPost() {
+    function addPost()
+    {
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("booksul").innerHTML += this.responseText;
+        xhttp.onreadystatechange = function ()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                document.getElementById("postsId").innerHTML += this.responseText;
             }
         };
-        xhttp.open("post", "/book/addrandom", true);
+        xhttp.open("post", "/post/addPost", true);
         xhttp.send();
     }
 </script>

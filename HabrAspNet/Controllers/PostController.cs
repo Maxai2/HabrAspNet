@@ -43,18 +43,30 @@ namespace HabrAspNet.Controllers
         [HttpPost]
         public IActionResult AddPost(UserViewModel model)
         {
-            int previewLength = model.PostText.Length / 2;
-            string preview = model.PostText.Substring(0, previewLength);
+            if (model.PostName == null || model.PostText == null)
+                return View(model);
 
-            postService.AddPost(new Post()
+            int length = model.PostText.Length;
+            int previewLength = length;
+
+            if (length > 50)
+                previewLength = length / 2;
+
+            string preview = model.PostText.Substring(0, previewLength) + "...";
+
+            var post = new Post()
             {
                 PostDate = DateTime.Now,
                 PostName = model.PostName,
                 PostPreview = preview,
-                PostText = model.PostText
-            });
+                PostText = model.PostText,
+                UserId = model.User.Id
+            };
 
-            return PartialView("_PostsPartial", postService.GetPosts());
+            model.User.Posts.Add(post);
+            postService.AddPost(post);
+            
+            return RedirectToAction("GoToProfile", "User", model); ;
         }
     }
 }

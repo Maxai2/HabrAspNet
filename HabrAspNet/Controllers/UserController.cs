@@ -18,16 +18,27 @@ namespace HabrAspNet.Controllers
             this.userService = userService;
         }
 
-        [HttpPost]
-        public IActionResult CheckEmail(string email)
-        {
-            if (userService.CheckEmail(email))
-            {
-                return Json(false);
-            }
+        //[HttpPost]
+        //public IActionResult CheckEmail(string email)
+        //{
+        //    if (userService.CheckEmail(email))
+        //    {
+        //        return Json(false);
+        //    }
 
-            return Json(true);
-        }
+        //    return Json(true);
+        //}
+
+        //[HttpPost]
+        //public IActionResult CheckLogin(string login)
+        //{
+        //    if (!userService.CheckLogin(login))
+        //    {
+        //        return Json(false);
+        //    }
+
+        //    return Json(true);
+        //}
 
         [HttpGet]
         public IActionResult GoToProfile()

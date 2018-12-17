@@ -17,10 +17,11 @@
             <label>@Model.User.RegistrationDate</label>
         </div>
 
-        <form asp-controller="post" asp-action="add" class="PostCreatContCl">
-            <input asp-for="@Model.PostName" placeholder="Post name"/>
+        <form asp-controller="post" asp-action="addPost" method="post" class="PostCreatContCl">
+            <input asp-for="@Model.PostName" placeholder="Post name" />
             <br />
-            <textarea asp-for="@Model.PostText" placeholder="Text"/>
+            <br />
+            <textarea asp-for="@Model.PostText" placeholder="Text"></textarea>
             <br />
             <input type="submit" value="Add post"/>
         </form>
@@ -28,7 +29,7 @@
 
     <hr />
 
-    @*<div class="PostsCl" id="postsId">
+    <div class="PostsCl" id="postsId">
         @foreach (var p in Model.User.Posts)
         {
             <h2>p.PostName</h2>
@@ -39,9 +40,9 @@
             <br/>
             <hr/>
         }
-    </div>*@
+    </div>
 
-    @Html.Partial("_PostsPartial")
+    @*@Html.Partial("_PostsPartial")*@
 
 </div>
 

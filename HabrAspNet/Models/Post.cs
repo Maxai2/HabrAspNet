@@ -21,6 +21,7 @@ namespace HabrAspNet.Models
         [Required]
         public string PostText { get; set; }
 
+        public int UserId { get; set; }
         public virtual List<Comment> Comments { get; set; }
     }
 }

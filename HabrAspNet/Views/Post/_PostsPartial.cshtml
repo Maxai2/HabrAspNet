@@ -14,29 +14,29 @@
     }*@
 </div>
 
-<script>
+@*<script>
     let post = document.getElementById("PostId");
 
     post.remove();
 
-    for (let i = 0; i < @Model.Posts.Count; i++)
+    for (let k = 0; k < @Model.Posts.Count; k++)
     {
         let div = document.createElement("div");
 
         let h2 = document.createElement("h2");
-        h2.innerText = @Model.Posts[i].PostName;
+        h2.innerText = @Model.Posts[k].PostName;
         div.append(h2);
 
         div.append(document.createElement("br"));
 
         let labelDate = document.createElement("label");
-        labelDate.innerText = @Model.Posts[i].PostDate;
+        labelDate.innerText = @Model.Posts[k].PostDate;
         div.append(labelDate);
 
         div.append(document.createElement("br"));
 
         let labelPrev = document.createElement("label");
-        labelPrev.innerText = @Model.Posts[i].PostPreview;
+        labelPrev.innerText = @Model.Posts[k].PostPreview;
 
         div.append(document.createElement("br"));
         div.append(document.createElement("hr"));
@@ -44,4 +44,4 @@
         post.append(div);
     }
 
-</script>
+</script>*@

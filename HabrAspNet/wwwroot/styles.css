@@ -178,11 +178,24 @@ header
 .ProfileInfoConteinerCl .ProfileInfoCl 
 {
     grid-column: 1;
+    margin-left: 10px;
 }
 
 .ProfileInfoConteinerCl .PostCreatContCl 
 {
     grid-column: 2;
+    margin-left: 20px;
+}
+
+.ProfileInfoConteinerCl .PostCreatContCl input 
+{
+    width: 50%;
+}
+
+.ProfileInfoConteinerCl .PostCreatContCl textarea 
+{
+    width: 50%;
+    height: 100px;
 }
 
 .PostsCl 

@@ -9,17 +9,23 @@ namespace HabrAspNet.Utils
 {
     public class CheckEmailAttribute : ValidationAttribute
     {
+        private bool isExist;
+
+        public CheckEmailAttribute(bool isExist)
+        {
+            this.isExist = isExist;
+        }
+
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             IUserService userService = (IUserService)validationContext.GetService(typeof(IUserService));
 
-            if (!userService.CheckEmail(value.ToString()))
+            if (userService.CheckEmail(value.ToString()) != isExist)
             {
                 return new ValidationResult(FormatErrorMessage(validationContext.DisplayName));
             }
 
             return ValidationResult.Success;
         }
-
     }
 }

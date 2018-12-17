@@ -25,6 +25,6 @@ namespace HabrAspNet.Models
         public DateTime RegistrationDate { get; set; }
         public string Avatar { get; set; }
 
-        public virtual List<Post> Posts { get; set; }
+        //public virtual List<Post> Posts { get; set; }
     }
 }

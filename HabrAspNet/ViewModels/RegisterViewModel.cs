@@ -13,7 +13,7 @@ namespace HabrAspNet.ViewModels
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress]
         [MaxLength(50)]
-        //[CheckEmail(ErrorMessage = "Such email is registered!")]
+        [CheckEmail(false, ErrorMessage = "Such email is registered!")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Login is required")]

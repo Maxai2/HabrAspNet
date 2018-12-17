@@ -3,45 +3,47 @@
 <div class="PostsCl" id="PostId">
 
     @*@foreach (var p in Model.Posts)
-    {
-        <h2>p.PostName</h2>
-        <br/>
-        <label>p.PostDate</label>
-        <br/>
-        <label>p.PostPreview</label>
-        <br/>
-        <hr/>
-    }*@
+        {
+            <h2>p.PostName</h2>
+            <br/>
+            <label>p.PostDate</label>
+            <br/>
+            <label>p.PostPreview</label>
+            <br/>
+            <hr/>
+        }*@
 </div>
 
-@*<script>
-    let post = document.getElementById("PostId");
+<script>
+    let post = document.getelementbyıd("postıd");
 
     post.remove();
 
-    for (let k = 0; k < @Model.Posts.Count; k++)
-    {
-        let div = document.createElement("div");
+    @{int k = 0;}
 
-        let h2 = document.createElement("h2");
-        h2.innerText = @Model.Posts[k].PostName;
+    for (@k < @Model.posts.count; @k++)
+    {
+        let div = document.createelement("div");
+
+        let h2 = document.createelement("h2");
+        h2.innertext = @Model.Posts[k].PostName;
         div.append(h2);
 
-        div.append(document.createElement("br"));
+        div.append(document.createelement("br"));
 
-        let labelDate = document.createElement("label");
-        labelDate.innerText = @Model.Posts[k].PostDate;
-        div.append(labelDate);
+        let labeldate = document.createelement("label");
+        labeldate.innertext = @Model.posts[k].postdate;
+        div.append(labeldate);
 
-        div.append(document.createElement("br"));
+        div.append(document.createelement("br"));
 
-        let labelPrev = document.createElement("label");
-        labelPrev.innerText = @Model.Posts[k].PostPreview;
+        let labelprev = document.createelement("label");
+        labelprev.innertext = @model.posts[k].postpreview;
 
-        div.append(document.createElement("br"));
-        div.append(document.createElement("hr"));
+        div.append(document.createelement("br"));
+        div.append(document.createelement("hr"));
 
         post.append(div);
     }
 
-</script>*@
+</script>

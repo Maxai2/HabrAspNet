@@ -60,13 +60,12 @@ namespace HabrAspNet.Controllers
                 PostName = model.PostName,
                 PostPreview = preview,
                 PostText = model.PostText,
-                UserId = model.User.Id
+                User = userService.GetUsers().Find(u => u.Id == Int32.Parse(Request.Cookies["id"]))
             };
 
-            model.User.Posts.Add(post);
             postService.AddPost(post);
-            
-            return RedirectToAction("GoToProfile", "User", model); ;
+
+            return PartialView("_PostsPartial", post);
         }
     }
 }

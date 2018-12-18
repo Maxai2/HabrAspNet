@@ -1,4 +1,4 @@
-﻿ using HabrAspNet.Models;
+﻿using HabrAspNet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +11,7 @@ namespace HabrAspNet.ViewModels
         public User User { get; set; }
         public string PostName { get; set; }
         public string PostText { get; set; }
+
+        public List<Post> UserPosts { get; set; }
     }
 }

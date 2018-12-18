@@ -17,43 +17,45 @@
             <label>@Model.User.RegistrationDate</label>
         </div>
 
-        <form asp-controller="post" asp-action="addPost" method="post" class="PostCreatContCl">
+        <form onsubmit="addPost()" method="post" class="PostCreatContCl">
             <input asp-for="@Model.PostName" placeholder="Post name" />
             <br />
             <br />
             <textarea asp-for="@Model.PostText" placeholder="Text"></textarea>
             <br />
-            <input type="submit" value="Add post"/>
+            <input type="submit" value="Add post" />
         </form>
     </div>
 
     <hr />
 
     <div class="PostsCl" id="postsId">
-        @foreach (var p in Model.User.Posts)
+        @foreach (var p in Model.UserPosts)
         {
             <h2>p.PostName</h2>
-            <br/>
+            <br />
             <label>p.PostDate</label>
-            <br/>
+            <br />
             <label>p.PostPreview</label>
-            <br/>
-            <hr/>
+            <br />
+            <hr />
         }
     </div>
 
-    @*@Html.Partial("_PostsPartial")*@
+    @Html.Partial("~/Views/Post/_PostsPartial.cshtml", new Post())
 
 </div>
 
 <script>
-    function addPost()
-    {
+    function addPost() {
+        event.preventDefault();
+        console.log("1");
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function ()
-        {
-            if (this.readyState == 4 && this.status == 200)
-            {
+        xhttp.onreadystatechange = function () {
+            console.log("2");
+            console.log(this.status);
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("3");
                 document.getElementById("postsId").innerHTML += this.responseText;
             }
         };

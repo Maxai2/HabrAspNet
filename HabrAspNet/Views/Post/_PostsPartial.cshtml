@@ -1,49 +1,57 @@
-﻿@model PostViewModel
+﻿@model Post
 
-<div class="PostsCl" id="PostId">
+<h2>p.PostName</h2>
+<br />
+<label>p.PostDate</label>
+<br />
+<label>p.PostPreview</label>
+<br />
+<hr />
 
-    @*@foreach (var p in Model.Posts)
+@*<div class="PostsCl" id="PostId">
+
+        @foreach (var p in Model.Posts)
+            {
+                <h2>p.PostName</h2>
+                <br/>
+                <label>p.PostDate</label>
+                <br/>
+                <label>p.PostPreview</label>
+                <br/>
+                <hr/>
+            }
+</div>*@
+
+@*<script>
+        let post = document.getelementbyıd("PostId");
+
+        post.remove();
+
+        @{int k = 0;}
+
+        for (@k < @Model.Posts.Count; @k++)
         {
-            <h2>p.PostName</h2>
-            <br/>
-            <label>p.PostDate</label>
-            <br/>
-            <label>p.PostPreview</label>
-            <br/>
-            <hr/>
-        }*@
-</div>
+            let div = document.createelement("div");
 
-<script>
-    let post = document.getelementbyıd("postıd");
+            let h2 = document.createelement("h2");
+            h2.innertext = @Model.Posts[k].PostName;
+            div.append(h2);
 
-    post.remove();
+            div.append(document.createelement("br"));
 
-    @{int k = 0;}
+            let labeldate = document.createelement("label");
+            labeldate.innertext = @Model.Posts[k].PostDate;
+            div.append(labeldate);
 
-    for (@k < @Model.posts.count; @k++)
-    {
-        let div = document.createelement("div");
+            div.append(document.createelement("br"));
 
-        let h2 = document.createelement("h2");
-        h2.innertext = @Model.Posts[k].PostName;
-        div.append(h2);
+            let labelprev = document.createelement("label");
+            labelprev.innertext = @Model.Posts[k].PostPreview;
 
-        div.append(document.createelement("br"));
+            div.append(document.createelement("br"));
+            div.append(document.createelement("hr"));
 
-        let labeldate = document.createelement("label");
-        labeldate.innertext = @Model.posts[k].postdate;
-        div.append(labeldate);
+            post.append(div);
+        }
 
-        div.append(document.createelement("br"));
-
-        let labelprev = document.createelement("label");
-        labelprev.innertext = @model.posts[k].postpreview;
-
-        div.append(document.createelement("br"));
-        div.append(document.createelement("hr"));
-
-        post.append(div);
-    }
-
-</script>
+    </script>*@

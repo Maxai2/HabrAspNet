@@ -13,9 +13,12 @@ namespace HabrAspNet.Controllers
     {
         private IUserService userService;
 
-        public UserController(IUserService userService)
+        private IPostService postService;
+
+        public UserController(IUserService userService, IPostService postService)
         {
             this.userService = userService;
+            this.postService = postService;
         }
 
         //[HttpPost]
@@ -47,7 +50,17 @@ namespace HabrAspNet.Controllers
 
             if (Request.Cookies.Count != 0)
             {
-                user.User = userService.GetUsers().Find(u => u.Id == Int32.Parse(Request.Cookies["id"]));
+                int id = Int32.Parse(Request.Cookies["id"]);
+
+                user.User = userService.GetUsers().Find(u => u.Id == id);
+
+                user.UserPosts = new List<Post>();
+
+                postService.GetPosts().ForEach(p =>
+                {
+                    if (id == p.Id)
+                        user.UserPosts.Add(p);
+                });
 
                 ViewData["isAuth"] = true;
 

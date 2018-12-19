@@ -17,11 +17,12 @@
             <label>@Model.User.RegistrationDate</label>
         </div>
 
-        <form onsubmit="addPost()" method="post" class="PostCreatContCl">
+        <form onsubmit="addPost()" id="NewPostElemId" method="post" class="PostCreatContCl">
             <input asp-for="@Model.PostName" placeholder="Post name" />
             <br />
             <br />
-            <textarea asp-for="@Model.PostText" placeholder="Text"></textarea>
+            <textarea asp-for="@Model.PostText" name="PostText" placeholder="Text"></textarea>
+            <br />
             <br />
             <input type="submit" value="Add post" />
         </form>
@@ -47,19 +48,32 @@
 </div>
 
 <script>
+    function postElem(postName, postText) {
+        this.postName = postName;
+        this.postText = postText;
+    }
+
     function addPost() {
         event.preventDefault();
-        console.log("1");
         var xhttp = new XMLHttpRequest();
+
+        var post = document.getElementById("NewPostElemId");
+        var sendElem = { postName: post.PostName.value, postText: post.PostText.value };
+
+        console.log("1");
         xhttp.onreadystatechange = function () {
             console.log("2");
-            console.log(this.status);
+
             if (this.readyState == 4 && this.status == 200) {
                 console.log("3");
                 document.getElementById("postsId").innerHTML += this.responseText;
             }
         };
+
+        console.log("4");
         xhttp.open("post", "/post/addPost", true);
-        xhttp.send();
+        xhttp.setRequestHeader("Content-type", "text/json");
+        console.log("5");
+        xhttp.send(JSON.stringify(sendElem));
     }
 </script>

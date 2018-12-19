@@ -1,26 +1,15 @@
 ﻿@model Post
 
-<h2>p.PostName</h2>
-<br />
-<label>p.PostDate</label>
-<br />
-<label>p.PostPreview</label>
-<br />
-<hr />
-
-@*<div class="PostsCl" id="PostId">
-
-        @foreach (var p in Model.Posts)
-            {
-                <h2>p.PostName</h2>
-                <br/>
-                <label>p.PostDate</label>
-                <br/>
-                <label>p.PostPreview</label>
-                <br/>
-                <hr/>
-            }
-</div>*@
+@if (Model.PostName != null)
+{
+    <h2>@Model.PostName</h2>
+    <br />
+    <label>@Model.PostDate</label>
+    <br />
+    <label>@Model.PostPreview</label>
+    <br />
+    <hr />
+}
 
 @*<script>
         let post = document.getelementbyıd("PostId");
@@ -53,5 +42,4 @@
 
             post.append(div);
         }
-
     </script>*@

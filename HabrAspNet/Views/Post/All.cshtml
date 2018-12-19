@@ -4,14 +4,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="PostsClass">
+<div class="PostsCl">
     @foreach (var p in Model)
     {
-        <h2>p.PostName</h2>
+        <a asp-controller="Post" asp-action="GetPost" asp-route-id="@p.Id">
+            <h2>@p.PostName</h2>
+        </a>
         <br />
-        <label>p.PostDate</label>
+        <a asp-controller="User" asp-action="GetUser" asp-route-id="@p.User.Id">
+            <img src="@p.User.Avatar" title="@p.User.Login" />
+        </a>
+        <label>@p.PostDate</label>
         <br />
-        <label>p.PostPreview</label>
+        <label>@p.PostPreview</label>
         <br />
         <hr />
     }

@@ -200,4 +200,12 @@ header
 
 .PostsCl 
 {
+    margin: 0 auto;
+    width: 500px;
+}
+
+.PostsCl img 
+{
+    border-radius: 50%;
+    height: 50px;
 }

@@ -12,7 +12,6 @@ namespace HabrAspNet.Controllers
     public class UserController : Controller
     {
         private IUserService userService;
-
         private IPostService postService;
 
         public UserController(IUserService userService, IPostService postService)
@@ -66,6 +65,14 @@ namespace HabrAspNet.Controllers
 
                 ViewData["UserAvatar"] = user.User.Avatar;
             }
+
+            return View(user);
+        }
+
+        [HttpGet]
+        public IActionResult GetUser(int id)
+        {
+            var user = userService.GetUser(id);
 
             return View(user);
         }

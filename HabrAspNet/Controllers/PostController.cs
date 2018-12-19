@@ -41,7 +41,7 @@ namespace HabrAspNet.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddPost(UserViewModel model)
+        public IActionResult AddPost([FromBody]UserViewModel model)
         {
             if (model.PostName == null || model.PostText == null)
                 return View(model);
@@ -66,6 +66,14 @@ namespace HabrAspNet.Controllers
             postService.AddPost(post);
 
             return PartialView("_PostsPartial", post);
+        }
+
+        [HttpGet]
+        public IActionResult GetPost(int id)
+        {
+            var post = postService.GetPost(id);
+
+            return View(post);
         }
     }
 }

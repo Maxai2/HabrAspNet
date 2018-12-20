@@ -13,5 +13,6 @@ namespace HabrAspNet.Services
         List<User> GetUsers();
         bool CheckEmail(string email);
         bool CheckLogin(string login);
+        List<Post> GetPostsByUserId(int id);
     }
 }

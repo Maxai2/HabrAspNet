@@ -1,20 +1,23 @@
 ﻿body 
 {
     margin: 0;
-    overflow: hidden;
 }
 
-header 
-{
+.wrap {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 120px auto;
+}
 
-    position: sticky;
-    top: 0;
+header {
+    border-bottom: 1px solid gray;
 }
 
 .headerCl 
 {
     height: 100px;
     display: grid;
+    margin: 10px 0;
     grid-template-columns: 1fr 2fr 0.5fr 0.5fr;
 }
 
@@ -110,9 +113,7 @@ header
 
 .BodyCl 
 {
-    margin: 0 auto;
     background-color: #F4F4F4;
-    height: 100vh;
     overflow: auto;
 }
 
@@ -192,20 +193,118 @@ header
     width: 50%;
 }
 
+.ProfileInfoConteinerCl .PostCreatContCl input[type=submit] 
+{
+    padding: 0 13px;
+    height: 36px;
+    border-radius: 3px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    background-color: #7aa1bd;
+    box-shadow: none;
+    color: #fff;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
 .ProfileInfoConteinerCl .PostCreatContCl textarea 
 {
-    width: 50%;
-    height: 100px;
+        width: 50%;
+        height: 100px;
 }
 
 .PostsCl 
 {
     margin: 0 auto;
-    width: 500px;
+    width: 700px;
 }
 
 .PostsCl img 
 {
     border-radius: 50%;
     height: 50px;
+}
+
+.PostsCl a 
+{
+    text-decoration: none;
+}
+
+.PostsCl h2
+{
+    text-align: center;
+}
+
+.PostsCl h1 
+{
+    text-align: center;
+}
+
+.PostsCl label 
+{
+    font-size: small;
+    margin-left: 5px;
+}
+
+.PostsCl p 
+{
+    text-indent: 1.5em;
+    text-align: justify;}
+
+.PostsCl span 
+{
+    font-weight: 500;
+    font-family: 'Fira Sans',sans-serif;
+    color: #444;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 24px;
+}
+
+.PostsCl strong 
+{
+    font-weight: 500;
+    font-family: 'Fira Sans',sans-serif;
+    color: #548eaa;
+    letter-spacing: 1.09px;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.CommentCl 
+{
+    padding: 5px 0 16px;
+}
+
+.CommentCl textarea 
+{
+    padding: 10px 16px 0;
+    position: relative;
+    overflow: auto;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 10px 10px 0;
+    min-height: 120px !important;
+    width: 100% !important;
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    color: #000;
+    vertical-align: top;
+    font: 14px/1.6 Verdana,Geneva,sans-serif;
+    resize: vertical;
+}
+
+.CommentCl input 
+{
+    padding: 0 13px;
+    height: 36px;
+    border-radius: 3px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    background-color: #7aa1bd;
+    box-shadow: none;
+    color: #fff;
+    cursor: pointer;
+    touch-action: manipulation;
+    width: 100%;
 }

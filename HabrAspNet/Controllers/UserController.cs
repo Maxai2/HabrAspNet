@@ -53,13 +53,7 @@ namespace HabrAspNet.Controllers
 
                 user.User = userService.GetUsers().Find(u => u.Id == id);
 
-                user.UserPosts = new List<Post>();
-
-                postService.GetPosts().ForEach(p =>
-                {
-                    if (id == p.Id)
-                        user.UserPosts.Add(p);
-                });
+                user.UserPosts = userService.GetPostsByUserId(id);
 
                 ViewData["isAuth"] = true;
 

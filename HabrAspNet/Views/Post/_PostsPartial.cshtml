@@ -1,45 +1,13 @@
 ﻿@model Post
 
-@if (Model.PostName != null)
+@if (Model.PostName != null || Model.PostText != null)
 {
-    <h2>@Model.PostName</h2>
+    <a asp-controller="Post" asp-action="GetPost" asp-route-id="@Model.Id">
+        <h2>@Model.PostName</h2>
+    </a>
     <br />
     <label>@Model.PostDate</label>
     <br />
-    <label>@Model.PostPreview</label>
-    <br />
+    <p>@Model.PostPreview</p>
     <hr />
 }
-
-@*<script>
-        let post = document.getelementbyıd("PostId");
-
-        post.remove();
-
-        @{int k = 0;}
-
-        for (@k < @Model.Posts.Count; @k++)
-        {
-            let div = document.createelement("div");
-
-            let h2 = document.createelement("h2");
-            h2.innertext = @Model.Posts[k].PostName;
-            div.append(h2);
-
-            div.append(document.createelement("br"));
-
-            let labeldate = document.createelement("label");
-            labeldate.innertext = @Model.Posts[k].PostDate;
-            div.append(labeldate);
-
-            div.append(document.createelement("br"));
-
-            let labelprev = document.createelement("label");
-            labelprev.innertext = @Model.Posts[k].PostPreview;
-
-            div.append(document.createelement("br"));
-            div.append(document.createelement("hr"));
-
-            post.append(div);
-        }
-    </script>*@

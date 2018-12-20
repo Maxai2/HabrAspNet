@@ -16,48 +16,51 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <div class="headerCl">
-            <a asp-controller="post" asp-action="all" class="MainPageImgCl">
-                <img src="~/logo-habrahabr.png" />
-            </a>
+    <div class="wrap">
 
-            <div class="AuthWork">
-                @if (ViewData["isAuth"] != null && (bool)ViewData["isAuth"])
-                {
-                    <a asp-controller="user" asp-action="goToProfile" class="GetUserProfileCl">
-                        <img src="@ViewData["UserAvatar"]" class="AvatarImg" />
-                    </a>
+        <header>
+            <div class="headerCl">
+                <a asp-controller="post" asp-action="all" class="MainPageImgCl">
+                    <img src="~/logo-habrahabr.png" />
+                </a>
 
-                    <a asp-controller="user" asp-action="logout" class="LogoutCl">Logout</a>
+                <div class="AuthWork">
+                    @if (ViewData["isAuth"] != null && (bool)ViewData["isAuth"])
+                    {
+                        <a asp-controller="user" asp-action="goToProfile" class="GetUserProfileCl">
+                            <img src="@ViewData["UserAvatar"]" class="AvatarImg" />
+                        </a>
 
-                    @*<img src="@ViewData["UserAvatar"]" class="AvatarImg" />
-                        <select>
-                            <option>
-                                <a asp-controller="user" asp-action="goToProfile">Profile</a>
-                            </option>
-                            <option>
-                                <a asp-controller="user" asp-action="logout">Logout</a>
-                            </option>
-                        </select>*@
-                }
-                else
-                {
-                    <div class="navbarClass">
-                        <a asp-controller="user" asp-action="login" class="LoginCl">Login</a>
+                        <a asp-controller="user" asp-action="logout" class="LogoutCl">Logout</a>
 
-                        <a asp-controller="user" asp-action="register" class="RegisCl">Registration</a>
-                    </div>
-                }
+                        @*<img src="@ViewData["UserAvatar"]" class="AvatarImg" />
+                            <select>
+                                <option>
+                                    <a asp-controller="user" asp-action="goToProfile">Profile</a>
+                                </option>
+                                <option>
+                                    <a asp-controller="user" asp-action="logout">Logout</a>
+                                </option>
+                            </select>*@
+                    }
+                    else
+                    {
+                        <div class="navbarClass">
+                            <a asp-controller="user" asp-action="login" class="LoginCl">Login</a>
+
+                            <a asp-controller="user" asp-action="register" class="RegisCl">Registration</a>
+                        </div>
+                    }
+                </div>
             </div>
+
+        </header>
+
+
+        <div class="BodyCl">
+            @RenderBody()
         </div>
 
-    </header>
-
-    <hr />
-
-    <div class="BodyCl">
-        @RenderBody()
     </div>
 
     @RenderSection("scripts", required: false)

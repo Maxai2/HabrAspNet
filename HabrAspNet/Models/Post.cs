@@ -13,14 +13,12 @@ namespace HabrAspNet.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
         public string PostName { get; set; }
 
         [Required]
         public DateTime PostDate { get; set; }
 
         [Required]
-        [MaxLength(100)]
         public string PostPreview { get; set; }
 
         [Required]

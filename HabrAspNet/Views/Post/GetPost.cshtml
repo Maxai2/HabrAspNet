@@ -4,5 +4,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.PostName</h2>
+<div class="PostsCl">
+    <h1>@Model.PostName</h1>
+    <br />
+    <a asp-controller="User" asp-action="GetUser" asp-route-id="@Model.User.Id">
+        <img src="@Model.User.Avatar" title="@Model.User.Login" />
+    </a>
+    <label>@Model.PostDate</label>
+    <br />
+    <br />
+    <p>@Model.PostText</p>
+    <hr />
 
+    <span>
+        Comments
+        <strong class="comments-section__head-counter">@Model.Comments.Count</strong>
+    </span>
+
+    @if (ViewData["isAuth"] != null && (bool)ViewData["isAuth"])
+    {
+        <div class="CommentCl">
+            <form onsubmit="addComment()">
+                <textarea></textarea>
+                <br />
+                <br />
+                <input type="submit" value="Send" />
+            </form>
+        </div>
+    }
+
+</div>

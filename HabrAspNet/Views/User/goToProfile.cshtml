@@ -33,12 +33,13 @@
     <div class="PostsCl" id="postsId">
         @foreach (var p in Model.UserPosts)
         {
-            <h2>p.PostName</h2>
+            <a asp-controller="Post" asp-action="GetPost" asp-route-id="@p.Id">
+                <h2>@p.PostName</h2>
+            </a>
             <br />
-            <label>p.PostDate</label>
+            <label>@p.PostDate</label>
             <br />
-            <label>p.PostPreview</label>
-            <br />
+            <p>@p.PostPreview</p>
             <hr />
         }
     </div>
@@ -48,32 +49,26 @@
 </div>
 
 <script>
-    function postElem(postName, postText) {
-        this.postName = postName;
-        this.postText = postText;
-    }
-
     function addPost() {
         event.preventDefault();
         var xhttp = new XMLHttpRequest();
 
-        var post = document.getElementById("NewPostElemId");
+        var post = document.getElementById('NewPostElemId');
         var sendElem = { postName: post.PostName.value, postText: post.PostText.value };
 
-        console.log("1");
         xhttp.onreadystatechange = function () {
-            console.log("2");
 
             if (this.readyState == 4 && this.status == 200) {
-                console.log("3");
-                document.getElementById("postsId").innerHTML += this.responseText;
+                document.getElementById('postsId').innerHTML += this.responseText;
+
+                post.PostName.value = '';
+                post.PostText.value = '';
             }
         };
 
-        console.log("4");
-        xhttp.open("post", "/post/addPost", true);
-        xhttp.setRequestHeader("Content-type", "text/json");
-        console.log("5");
+        xhttp.open('post', '/post/addPost', true);
+        xhttp.setRequestHeader('Content-type', 'text/json');
         xhttp.send(JSON.stringify(sendElem));
     }
+
 </script>

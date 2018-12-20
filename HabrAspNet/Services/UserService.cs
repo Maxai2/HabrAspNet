@@ -33,6 +33,19 @@ namespace HabrAspNet.Services
             return context.Users.Where(u => u.Login == login).Count() > 0;
         }
 
+        public List<Post> GetPostsByUserId(int id)
+        {
+            var posts = new List<Post>();
+
+            foreach (var p in context.Posts)
+            {
+                if (id == p.User.Id)
+                    posts.Add(p);
+            }
+
+            return posts;
+        }
+
         public User GetUser(int id)
         {
             return context.Users.Find(id);

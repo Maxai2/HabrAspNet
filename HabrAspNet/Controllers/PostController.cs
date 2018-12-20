@@ -73,6 +73,18 @@ namespace HabrAspNet.Controllers
         {
             var post = postService.GetPost(id);
 
+            if (Request.Cookies.Count != 0 && Request.Cookies["id"] != null && Request.Cookies["id"] != "")
+            {
+                var user = userService.GetUsers().Find(u => u.Id == Int32.Parse(Request.Cookies["id"]));
+
+                if (user != null)
+                {
+                    ViewData["isAuth"] = true;
+
+                    ViewData["UserAvatar"] = user.Avatar;
+                }
+            }
+
             return View(post);
         }
     }

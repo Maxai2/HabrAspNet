@@ -1,0 +1,14 @@
+﻿@model Comment
+
+@if (Model.CommentText != null)
+{
+    <div class="CommentElemCl">
+        <a asp-controller="User" asp-action="GetUser" asp-route-id="@Model.User.Id">
+            <img src="@Model.User.Avatar" title="@Model.User.Login"/>
+        </a>
+        <label>@Model.CommentDate</label>
+        <br />
+        <br />
+        <p>@Model.CommentText</p>
+    </div>
+}

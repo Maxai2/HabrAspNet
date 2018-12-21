@@ -71,7 +71,11 @@ namespace HabrAspNet.Controllers
         [HttpGet]
         public IActionResult GetPost(int id)
         {
-            var post = postService.GetPost(id);
+            var post = new PostWithCommentViewModel()
+            {
+                Post = postService.GetPost(id),
+                PostComments = postService.GetPostComments()
+            };
 
             if (Request.Cookies.Count != 0 && Request.Cookies["id"] != null && Request.Cookies["id"] != "")
             {

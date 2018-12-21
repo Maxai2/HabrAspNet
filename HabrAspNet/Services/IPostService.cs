@@ -11,5 +11,6 @@ namespace HabrAspNet.Services
         Post AddPost(Post post);
         List<Post> GetPosts();
         Post GetPost(int id);
+        List<Comment> GetPostComments();
     }
 }

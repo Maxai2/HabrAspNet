@@ -21,7 +21,7 @@
             <input asp-for="@Model.PostName" placeholder="Post name" />
             <br />
             <br />
-            <textarea asp-for="@Model.PostText" name="PostText" placeholder="Text"></textarea>
+            <textarea asp-for="@Model.PostText" placeholder="Text"></textarea>
             <br />
             <br />
             <input type="submit" value="Add post" />
@@ -69,6 +69,7 @@
         xhttp.open('post', '/post/addPost', true);
         xhttp.setRequestHeader('Content-type', 'text/json');
         xhttp.send(JSON.stringify(sendElem));
+        console.log(xhttp);
     }
 
 </script>

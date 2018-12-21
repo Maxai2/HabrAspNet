@@ -1,12 +1,12 @@
 ﻿
 --DBCC CHECKIDENT ('Users', RESEED, 0) 
 
---SELECT * FROM Users
+SELECT * FROM Users
 
 --DELETE FROM Users WHERE Id = 2
 
-SELECT * FROM Posts
+SELECT * FROM Comments
 
-DBCC CHECKIDENT ('Posts', RESEED, 0) 
+--DBCC CHECKIDENT ('Posts', RESEED, 0) 
 
-DELETE FROM Posts
+--DELETE FROM Posts

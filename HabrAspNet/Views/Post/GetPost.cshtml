@@ -1,36 +1,76 @@
-﻿@model Post
+﻿@model PostWithCommentViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="PostsCl">
-    <h1>@Model.PostName</h1>
+    <h1>@Model.Post.PostName</h1>
     <br />
-    <a asp-controller="User" asp-action="GetUser" asp-route-id="@Model.User.Id">
-        <img src="@Model.User.Avatar" title="@Model.User.Login" />
+    <a asp-controller="User" asp-action="GetUser" asp-route-id="@Model.Post.User.Id">
+        <img src="@Model.Post.User.Avatar" title="@Model.Post.User.Login" />
     </a>
-    <label>@Model.PostDate</label>
+    <label>@Model.Post.PostDate</label>
     <br />
     <br />
-    <p>@Model.PostText</p>
+    <p>@Model.Post.PostText</p>
     <hr />
 
     <span>
         Comments
-        <strong class="comments-section__head-counter">@Model.Comments.Count</strong>
+        <strong class="comments-section__head-counter">@Model.PostComments.Count</strong>
     </span>
+
+    <div class="CommentContainerCl" id="CommentsId">
+        @foreach (var c in Model.PostComments)
+        {
+            <div class="CommentElemCl">
+                <a asp-controller="User" asp-action="GetUser" asp-route-id="@c.User.Id">
+                    <img src="@c.User.Avatar" title="@c.User.Login" />
+                </a>
+                <label>@c.CommentDate</label>
+                <br />
+                <br />
+                <p>@c.CommentText</p>
+            </div>
+        }
+
+        @Html.Partial("~/Views/Comment/_CommentPartial.cshtml", new Comment())
+    </div>
 
     @if (ViewData["isAuth"] != null && (bool)ViewData["isAuth"])
     {
         <div class="CommentCl">
-            <form onsubmit="addComment()">
-                <textarea></textarea>
+            <form onsubmit="addComment()" id="NewCommentElemId" method="post">
+                <textarea asp-for="@Model.Comment" placeholder="Comment"></textarea>
                 <br />
                 <br />
-                <input type="submit" value="Send" />
+                <input type="submit" value="Add Comment" />
             </form>
         </div>
     }
 
 </div>
+
+<script>
+    function addComment()
+    {
+        event.preventDefault();
+        var xhttp = new XMLHttpRequest();
+        var comment = document.getElementById('NewCommentElemId');
+        var sendElem = { commentText: comment.Comment.value };
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('CommentsId').innerHTML += this.responseText;
+
+                comment.Comment.value = '';
+            }
+        };
+
+        xhttp.open('comment', '/comment/addComment', true);
+        xhttp.setRequestHeader('Content-type', 'text/json');
+        console.log(xhttp);
+        xhttp.send(JSON.stringify(sendElem));
+    }
+</script>

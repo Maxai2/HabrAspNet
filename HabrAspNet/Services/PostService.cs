@@ -28,9 +28,16 @@ namespace HabrAspNet.Services
             return context.Posts.Find(id);
         }
 
+        public List<Comment> GetPostComments()
+        {
+            return context.Comments.ToList();
+        }
+
         public List<Post> GetPosts()
         {
             return context.Posts.ToList();
         }
+
+        
     }
 }

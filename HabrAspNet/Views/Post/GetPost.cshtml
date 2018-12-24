@@ -18,8 +18,11 @@
 
     <span>
         Comments
-        <strong class="comments-section__head-counter">@Model.PostComments.Count</strong>
+        <strong id="CommentsCountId">@Model.PostComments.Count</strong>
     </span>
+
+    <br />
+    <br />
 
     <div class="CommentContainerCl" id="CommentsId">
         @foreach (var c in Model.PostComments)
@@ -42,7 +45,8 @@
     {
         <div class="CommentCl">
             <form onsubmit="addComment()" id="NewCommentElemId" method="post">
-                <textarea asp-for="@Model.Comment" placeholder="Comment"></textarea>
+                <input type="hidden" name="PostId" value="@Model.Post.Id" />
+                <textarea name="Comment" placeholder="Comment"></textarea>
                 <br />
                 <br />
                 <input type="submit" value="Add Comment" />
@@ -53,24 +57,30 @@
 </div>
 
 <script>
-    function addComment()
-    {
+    var commentCount = @Model.PostComments.Count;
+
+    document.getElementById("CommentsCountId").innerText = commentCount;
+
+    function addComment() {
         event.preventDefault();
         var xhttp = new XMLHttpRequest();
         var comment = document.getElementById('NewCommentElemId');
-        var sendElem = { commentText: comment.Comment.value };
+        var sendElem = {
+            Comment: comment.Comment.value,
+            PostId: comment.PostId.value
+        };
 
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById('CommentsId').innerHTML += this.responseText;
 
                 comment.Comment.value = '';
+                document.getElementById("CommentsCountId").innerText = ++commentCount;
             }
         };
 
         xhttp.open('post', '/comment/addComment', true);
         xhttp.setRequestHeader('Content-type', 'text/json');
-        console.log(xhttp);
         xhttp.send(JSON.stringify(sendElem));
     }
 </script>

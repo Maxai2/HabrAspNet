@@ -7,6 +7,6 @@ SELECT * FROM Users
 
 SELECT * FROM Comments
 
---DBCC CHECKIDENT ('Posts', RESEED, 0) 
+DBCC CHECKIDENT ('Comments', RESEED, 0) 
 
---DELETE FROM Posts
+DELETE FROM Comments

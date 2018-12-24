@@ -1,7 +1,36 @@
-﻿@model User
+﻿@model UserViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Login</h2>
+<div>
+    <div class="ProfileInfoConteinerCl">
+        <div class="ProfileInfoCl">
+            <img src="@Model.User.Avatar" />
+            <br />
+            <br />
+            <label>@Model.User.Login</label>
+            <br />
+            <label>@Model.User.Email</label>
+            <br />
+            <label>@Model.User.RegistrationDate</label>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="PostsCl" id="postsId">
+        @foreach (var p in Model.UserPosts)
+        {
+            <a asp-controller="Post" asp-action="GetPost" asp-route-id="@p.Id">
+                <h2>@p.PostName</h2>
+            </a>
+            <br />
+            <label>@p.PostDate</label>
+            <br />
+            <p>@p.PostPreview</p>
+            <hr />
+        }
+    </div>
+</div>

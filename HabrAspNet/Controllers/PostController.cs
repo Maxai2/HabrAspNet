@@ -74,7 +74,7 @@ namespace HabrAspNet.Controllers
             var post = new PostWithCommentViewModel()
             {
                 Post = postService.GetPost(id),
-                PostComments = postService.GetPostComments()
+                PostComments = postService.GetPost(id).Comments
             };
 
             if (Request.Cookies.Count != 0 && Request.Cookies["id"] != null && Request.Cookies["id"] != "")

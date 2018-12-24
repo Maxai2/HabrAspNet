@@ -38,6 +38,6 @@ namespace HabrAspNet.Services
             return context.Posts.ToList();
         }
 
-        
+
     }
 }

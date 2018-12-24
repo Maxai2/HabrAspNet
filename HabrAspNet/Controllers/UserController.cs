@@ -47,7 +47,7 @@ namespace HabrAspNet.Controllers
         {
             var user = new UserViewModel();
 
-            if (Request.Cookies.Count != 0)
+            if (Request.Cookies.Count != 0 && Request.Cookies["id"] != null && Request.Cookies["id"] != "")
             {
                 int id = Int32.Parse(Request.Cookies["id"]);
 
@@ -66,7 +66,24 @@ namespace HabrAspNet.Controllers
         [HttpGet]
         public IActionResult GetUser(int id)
         {
-            var user = userService.GetUser(id);
+            var user = new UserViewModel()
+            {
+                User = userService.GetUser(id),
+                UserPosts = userService.GetPostsByUserId(id)
+            };
+
+            if (Request.Cookies.Count != 0 && Request.Cookies["id"] != null && Request.Cookies["id"] != "")
+            {
+                int index = Int32.Parse(Request.Cookies["id"]);
+
+                user.User = userService.GetUsers().Find(u => u.Id == index);
+
+                user.UserPosts = userService.GetPostsByUserId(index);
+
+                ViewData["isAuth"] = true;
+
+                ViewData["UserAvatar"] = user.User.Avatar;
+            }
 
             return View(user);
         }

@@ -13,15 +13,17 @@ namespace HabrAspNet.Controllers
     {
         private ICommentService commentService;
         private IUserService userService;
+        private IPostService postService;
 
-        public CommentController(ICommentService commentService, IUserService userService)
+        public CommentController(ICommentService commentService, IUserService userService, IPostService postService)
         {
             this.commentService = commentService;
             this.userService = userService;
+            this.postService = postService;
         }
 
         [HttpPost]
-        public IActionResult AddComment([FromBody]PostWithCommentViewModel model)
+        public IActionResult AddComment([FromBody]CommentViewModel model)
         {
             if (model.Comment == null)
                 return View(model);
@@ -33,7 +35,7 @@ namespace HabrAspNet.Controllers
                 User = userService.GetUsers().Find(u => u.Id == Int32.Parse(Request.Cookies["id"]))
             };
 
-            model.Post.Comments.Add(comment);
+            postService.GetPost(model.PostId).Comments.Add(comment);
             commentService.AddComment(comment);
 
             return PartialView("_CommentPartial", comment);

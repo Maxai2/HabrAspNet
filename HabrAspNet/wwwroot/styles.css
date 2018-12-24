@@ -271,6 +271,14 @@ header {
     font-size: 22px;
 }
 
+.CommentElemCl
+{
+    border: solid 1px gray;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 15px;
+}
+
 .CommentCl 
 {
     padding: 5px 0 16px;

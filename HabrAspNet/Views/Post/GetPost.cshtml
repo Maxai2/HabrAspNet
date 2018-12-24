@@ -68,7 +68,7 @@
             }
         };
 
-        xhttp.open('comment', '/comment/addComment', true);
+        xhttp.open('post', '/comment/addComment', true);
         xhttp.setRequestHeader('Content-type', 'text/json');
         console.log(xhttp);
         xhttp.send(JSON.stringify(sendElem));

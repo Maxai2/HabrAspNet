@@ -31,11 +31,11 @@ namespace HabrAspNet.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    PostName = table.Column<string>(maxLength: 50, nullable: false),
+                    PostName = table.Column<string>(nullable: false),
                     PostDate = table.Column<DateTime>(nullable: false),
-                    PostPreview = table.Column<string>(maxLength: 100, nullable: false),
+                    PostPreview = table.Column<string>(nullable: false),
                     PostText = table.Column<string>(nullable: false),
-                    UserId = table.Column<int>(nullable: true)
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,7 +45,7 @@ namespace HabrAspNet.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,8 +55,8 @@ namespace HabrAspNet.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CommentDate = table.Column<DateTime>(nullable: false),
-                    CommentText = table.Column<string>(nullable: true),
-                    UserId = table.Column<int>(nullable: true),
+                    CommentText = table.Column<string>(nullable: false),
+                    UserId = table.Column<int>(nullable: false),
                     PostId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -73,7 +73,7 @@ namespace HabrAspNet.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

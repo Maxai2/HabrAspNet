@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HabrAspNet.Migrations
 {
     [DbContext(typeof(HabrContext))]
-    [Migration("20181218054442_changeServices")]
-    partial class changeServices
+    [Migration("20181221221942_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,12 +55,10 @@ namespace HabrAspNet.Migrations
                     b.Property<DateTime>("PostDate");
 
                     b.Property<string>("PostName")
-                        .IsRequired()
-                        .HasMaxLength(50);
+                        .IsRequired();
 
                     b.Property<string>("PostPreview")
-                        .IsRequired()
-                        .HasMaxLength(100);
+                        .IsRequired();
 
                     b.Property<string>("PostText")
                         .IsRequired();
